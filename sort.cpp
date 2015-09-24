@@ -1,7 +1,29 @@
+//////////////////////////////////////////////////////////////////////////////////////////
+//																						//
+//	Author: Brad Stell																	//
+//																						//
+//	Date: 9/24/2015																		//
+//																						//
+//	Language: c++																		//
+//																						//
+//	Description:																		//
+//		This class is composed of all static methods to be used without instantiating	//
+//		an object of the class. It contains 4 sorting algorithms, each one different	//
+//		and utilizing a different property for sorting.									//
+//																						//
+//////////////////////////////////////////////////////////////////////////////////////////
+
+
 #include <iostream>
 #include "sort.h"
 
+/*
+	Brute Force Sort:
 
+		This method will go through all permutations of an incoming array and
+		check to see if each permutation is sorted. 
+		Once finding a sorted permutation the method will stop.
+*/
 void Sort::BruteForce(int * array, int k, int size)
 {
 	static bool SORTED = false;
@@ -41,6 +63,12 @@ void Sort::BruteForce(int * array, int k, int size)
 	}		
 }
 
+
+/*
+	Insertion Sort:
+		
+		This method will perform insertion sort on an incoming array
+*/
 void Sort::InsertionSort(int * array, int size)
 {
 	for (int i = 1; i < size; i++)
@@ -56,6 +84,12 @@ void Sort::InsertionSort(int * array, int size)
 	Sort::Print(array, size);
 }
 
+
+/*
+	Bubble Sort:
+
+		This method will perform insertion sort on an incoming array
+*/
 void Sort::BubbleSort(int * array, int size)
 {
 
@@ -78,6 +112,12 @@ void Sort::BubbleSort(int * array, int size)
 
 }
 
+
+/*
+	Selection Sort:
+
+		This method will perform selection sort on an incoming array
+*/
 void Sort::SelectionSort(int * array, int size)
 {
 	for (int i = 0; i < size - 1; i++)
@@ -94,6 +134,11 @@ void Sort::SelectionSort(int * array, int size)
 	Sort::Print(array, size);
 }
 
+/*
+	This method performs swapping of 2 elements in an array.
+
+	Used by SelectionSort, InsertionSort, and BubbleSort
+*/
 void Sort::Swap(int * array, int first, int second)
 {
 	int temp = array[first];

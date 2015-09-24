@@ -1,3 +1,27 @@
+//////////////////////////////////////////////////////////////////////////////////////////
+//																						//
+//	Author: Brad Stell																	//
+//																						//
+//	Date: 9/24/2015																		//
+//																						//
+//	Language: c++																		//
+//																						//
+//	Description:																		//
+//		This program accepts 3 parameters from the command line:						//
+//			1) The name of a file to read numbers from									//
+//			2) The number of elements to proccess from that file						//
+//			3) A flag that dictates which sorting alorithm to use:						//
+//				-bf for Brute Force sorting												//
+//				-i for Insertion sort													//
+//				-b for Bubble sort														//
+//				-s for selection sort													//
+//																						//
+//				example for selection sort with 1,000 elements:							//
+//					  main.exe instance.txt 1000 -s										//
+//																						//
+//////////////////////////////////////////////////////////////////////////////////////////
+
+
 #include <iostream>
 #include <string.h>
 #include <fstream>
@@ -10,11 +34,24 @@
 
 //////////////////////////////
 /// Function Declarations ///
+
+/* Read bytes from in-stream and place them in a buffer */
 unsigned int FileRead(std::istream & is, std::vector <char> & buff);
+
+/* Reades bytes from buffer and returns number of '\n' characters found */
 unsigned int CountLines(const std::vector <char> & buff, int sz);
 
 
+/*
+	Main method:
+		checks for proper program instantiation
+		calls appropriate sorting method based on <sort algo> flag 
 
+		Error checking:
+			Makes sure program was called correctly
+			Makes sure valid flag was used
+			Makes sure number of elements to process does not exceed numbers in file
+*/
 int main(int argc, char *argv[])
 {
 	/////////////////////////////////////////////////////////////////////
@@ -35,30 +72,30 @@ int main(int argc, char *argv[])
 	////////////////////////////////////////////////////
 	/// Program execution if instantiated correctly ///
 
-
-	// 1MB buffer size
-	const int SZ = 1024 * 1024;
-	std::vector <char> buff(SZ);
-	std::ifstream ifs("num.txt");
-	int size = 1;
-	while (int cc = FileRead(ifs, buff)) {
-		size += CountLines(buff, cc);
-	}
-
-
-
-
-
 	/* Variables */
 	int numElm = atoi(argv[2]);
 	int *array = new int[numElm];
 	std::ifstream file(argv[1]);
 
+////////////		 Check number of elements in the file		///////////////////////////////////////////////////////////
+	
+	const int SZ = 1024 * 1024;		// 1MB buffer size
+	std::vector <char> buff(SZ);	// Buffer for bytes read from file
+	std::ifstream ifs("num.txt");	// File to open
+	int size = 1;
+
+	// Get number of lines in the file
+	while (int cc = FileRead(ifs, buff)) {
+		size += CountLines(buff, cc);
+	}
+
+	// Make sure the requested amount of elements to process does not exceed what is in the file
 	if (numElm > size)
 	{
 		std::cout << "\n\nYou are trying to process more elements than are in the file.\nTerminating program.....\n\n";
 		return 0;
 	}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 	/* Report and abort failed file open */
@@ -127,11 +164,22 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
+
+/*
+	This method accepts an instream and a vector buffer.
+	It will read bytes from the instream and put them in the buffer in 1MB chuncks.
+*/
 unsigned int FileRead(std::istream & is, std::vector <char> & buff) {
 	is.read(&buff[0], buff.size());
 	return is.gcount();
 }
 
+
+/*
+	This method receives the buffer and the byte count from the above method.
+	It will count the number of newline characters and return how many were found,
+	thus analogous to the number of elements in the file.
+*/
 unsigned int CountLines(const std::vector <char> & buff, int sz) {
 	int newlines = 0;
 	const char * p = &buff[0];
