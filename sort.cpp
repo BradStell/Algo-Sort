@@ -82,26 +82,6 @@ void Sort::Swap(int * array, int first, int second)
 	array[second] = temp;
 }
 
-void Sort::Permutations(int * array, int k, int size)
-{
-	for (int i = k; i < size; i++)
-	{
-		int temp = array[i];
-		array[i] = array[k];
-		array[k] = temp;
-
-		Permutations(array, k + 1, size);
-
-		temp = array[k];
-		array[k] = array[i];
-		array[i] = temp;
-	}
-	if (k == size - 1)
-	{
-		Sort::Print(array, size);
-	}
-}
-
 //////////////////////////////////
 /// For testing purposes only ///
 void Sort::Print(int *array, int size)
