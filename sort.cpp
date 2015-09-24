@@ -4,8 +4,9 @@
 
 void Sort::BruteForce(int * array, int k, int size)
 {
-	
-	for (int i = k; i < size; i++)
+	static bool SORTED = false;
+
+	for (int i = k; i < size && !SORTED; i++)
 	{
 		// This for loop will create all permutations of the array,
 
@@ -23,15 +24,15 @@ void Sort::BruteForce(int * array, int k, int size)
 	{
 		// This if statement occurs once every different permutation
 		// Checks to see if the permutation is sorted
-		bool sorted = true;
+		SORTED = true;
 
-		for (int i = 0; i < size - 1 && sorted; i++)
+		for (int i = 0; i < size - 1 && SORTED; i++)
 		{
 			if (array[i] > array[i + 1])
-				sorted = false;
+				SORTED = false;
 		}
 				
-		if (sorted)
+		if (SORTED)
 		{
 			Sort::Print(array, size);
 			return;

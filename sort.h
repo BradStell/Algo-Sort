@@ -4,7 +4,7 @@
 class Sort
 {
 	private:
-
+		
 	public:
 		static void BruteForce(int *array, int k, int size);
 		static void InsertionSort(int *array, int size);
