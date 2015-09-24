@@ -1,9 +1,18 @@
 #include <iostream>
 #include <string.h>
 #include <fstream>
+#include <istream>
 #include <sstream>
 #include <stdlib.h>
+#include <vector>
 #include "sort.h"
+
+
+//////////////////////////////
+/// Function Declarations ///
+unsigned int FileRead(std::istream & is, std::vector <char> & buff);
+unsigned int CountLines(const std::vector <char> & buff, int sz);
+
 
 
 int main(int argc, char *argv[])
@@ -26,10 +35,30 @@ int main(int argc, char *argv[])
 	////////////////////////////////////////////////////
 	/// Program execution if instantiated correctly ///
 
+
+	// 1MB buffer size
+	const int SZ = 1024 * 1024;
+	std::vector <char> buff(SZ);
+	std::ifstream ifs("num.txt");
+	int size = 1;
+	while (int cc = FileRead(ifs, buff)) {
+		size += CountLines(buff, cc);
+	}
+
+
+
+
+
 	/* Variables */
 	int numElm = atoi(argv[2]);
-	int *array = new int[numElm];	
+	int *array = new int[numElm];
 	std::ifstream file(argv[1]);
+
+	if (numElm > size)
+	{
+		std::cout << "\n\nYou are trying to process more elements than are in the file.\nTerminating program.....\n\n";
+		return 0;
+	}
 
 
 	/* Report and abort failed file open */
@@ -96,4 +125,20 @@ int main(int argc, char *argv[])
 	}
 
 	return 0;
+}
+
+unsigned int FileRead(std::istream & is, std::vector <char> & buff) {
+	is.read(&buff[0], buff.size());
+	return is.gcount();
+}
+
+unsigned int CountLines(const std::vector <char> & buff, int sz) {
+	int newlines = 0;
+	const char * p = &buff[0];
+	for (int i = 0; i < sz; i++) {
+		if (p[i] == '\n') {
+			newlines++;
+		}
+	}
+	return newlines;
 }
