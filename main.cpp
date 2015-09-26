@@ -29,6 +29,9 @@
 #include <sstream>
 #include <stdlib.h>
 #include <vector>
+#include <ctime>
+#include <cstdlib>
+#include <cmath>
 #include "sort.h"
 
 
@@ -41,6 +44,11 @@ unsigned int FileRead(std::istream & is, std::vector <char> & buff);
 /* Reades bytes from buffer and returns number of '\n' characters found */
 unsigned int CountLines(const std::vector <char> & buff, int sz);
 
+/* Calculates the average of an array */
+double getAverage(clock_t *avgArr);
+
+/* Calculates the standard deviation of the 10 times calculated for each algo */
+double getStdDev(clock_t * avgArr, double avg);
 
 /*
 	Main method:
@@ -77,7 +85,7 @@ int main(int argc, char *argv[])
 	int *array = new int[numElm];
 	std::ifstream file(argv[1]);
 
-////////////		 Check number of elements in the file		///////////////////////////////////////////////////////////
+	////////////		 Check number of elements in the file		///////////////////////////////////////////////////////////
 	
 	const int SZ = 1024 * 1024;		// 1MB buffer size
 	std::vector <char> buff(SZ);	// Buffer for bytes read from file
@@ -95,7 +103,7 @@ int main(int argc, char *argv[])
 		std::cout << "\n\nYou are trying to process more elements than are in the file.\nTerminating program.....\n\n";
 		return 0;
 	}
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 	/* Report and abort failed file open */
@@ -125,7 +133,31 @@ int main(int argc, char *argv[])
 	{
 		std::cout << "Calling Brute Force with " << argv[2] << " elements\n\n";
 
-		Sort::BruteForce(array, 0, numElm);
+		/* Run the algo 10 times and time it to get an average time */
+
+		// Array to hold the 10 different times
+		clock_t avgArr[10];
+
+		for (int i = 0; i < 10; i++)
+		{
+			clock_t time = clock();
+			Sort::BruteForce(array, 0, numElm);
+			avgArr[i] = clock() - time;
+		}
+
+		// Get the average of the 10 times
+		double avgTime = getAverage(avgArr);
+
+		// Get the standard deviation of those times
+		double stdDev = getStdDev(avgArr, avgTime);
+
+		std::ofstream fileOut("Time-Outputs.txt");
+
+		fileOut << "\t### Brute Force ###\n"
+			 << "Average Time: " << avgTime << std::endl
+			 << "Standard Dev: " << stdDev << std::endl;
+
+		fileOut.close();
 	}
 
 	////////////////////////////
@@ -134,7 +166,23 @@ int main(int argc, char *argv[])
 	{
 		std::cout << "Calling Insertion Sort with " << argv[2] << " elements\n\n";
 
-		Sort::InsertionSort(array, numElm);
+		/* Run the algo 10 times and time it to get an average time */
+
+		// Array to hold the 10 different times
+		clock_t avgArr[10];
+
+		for (int i = 0; i < 10; i++)
+		{
+			clock_t time = clock();
+			Sort::InsertionSort(array, numElm);
+			avgArr[i] = clock() - time;
+		}		
+
+		// Get the average of the 10 times
+		double avgTime = getAverage(avgArr);
+
+		// Get the standard deviation of those times
+		double stdDev = getStdDev(avgArr, avgTime);
 	}
 
 	/////////////////////////
@@ -143,7 +191,23 @@ int main(int argc, char *argv[])
 	{
 		std::cout << "Calling Bubble Sort with " << argv[2] << " elements\n\n";
 
-		Sort::BubbleSort(array, numElm);
+		/* Run the algo 10 times and time it to get an average time */
+
+		// Array to hold the 10 different times
+		clock_t avgArr[10];
+
+		for (int i = 0; i < 10; i++)
+		{
+			clock_t time;
+			Sort::BubbleSort(array, numElm);
+			avgArr[i] = clock() - time;
+		}
+
+		// Get the average of the 10 times
+		double avgTime = getAverage(avgArr);
+
+		// Get the standard deviation of those times
+		double stdDev = getStdDev(avgArr, avgTime);		
 	}
 
 	////////////////////////////
@@ -152,9 +216,27 @@ int main(int argc, char *argv[])
 	{
 		std::cout << "Calling Selection Sort with " << argv[2] << " elements\n\n";
 
-		Sort::SelectionSort(array, numElm);
+		/* Run the algo 10 times and time it to get an average time */
+
+		// Array to hold the 10 different times
+		clock_t avgArr[10];
+
+		for (int i = 0; i < 10; i++)
+		{
+			clock_t time;
+			Sort::SelectionSort(array, numElm);
+			avgArr[i] = clock() - time;
+		}
+
+		// Get the average of the 10 times
+		double avgTime = getAverage(avgArr);
+
+		// Get the standard deviation of those times
+		double stdDev = getStdDev(avgArr, avgTime);		
 	}
 
+	////////////////////////////////////
+	/// Invalid sort algo flag used ///
 	else
 	{
 		std::cout << "\n\nInvalid sort algo flag used.\nTerminating program...\n\n";
@@ -189,4 +271,24 @@ unsigned int CountLines(const std::vector <char> & buff, int sz) {
 		}
 	}
 	return newlines;
+}
+
+double getAverage(clock_t *avgArr)
+{
+	double avg = 0;
+
+	for (int i = 0; i < 10; i++)
+		avg += avgArr[i];
+
+	return avg / 10.0;
+}
+
+double getStdDev(clock_t *avgArr, double avg)
+{
+	double stdDev = 0;
+
+	for (int i = 0; i < 10; i++)
+		stdDev += pow((avgArr[i] - avg), 2);
+
+	return sqrt((stdDev / 10));
 }
