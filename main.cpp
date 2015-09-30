@@ -30,6 +30,7 @@
 #include <stdlib.h>
 #include <vector>
 #include <ctime>
+#include <time.h>
 #include <cstdlib>
 #include <cmath>
 #include "sort.h"
@@ -89,7 +90,7 @@ int main(int argc, char *argv[])
 	
 	const int SZ = 1024 * 1024;		// 1MB buffer size
 	std::vector <char> buff(SZ);	// Buffer for bytes read from file
-	std::ifstream ifs("num.txt");	// File to open
+	std::ifstream ifs(argv[1]);	// File to open
 	int size = 1;
 
 	// Get number of lines in the file
@@ -151,10 +152,11 @@ int main(int argc, char *argv[])
 		// Get the standard deviation of those times
 		double stdDev = getStdDev(avgArr, avgTime);
 
-		std::ofstream fileOut("Time-Outputs.txt");
+		std::ofstream fileOut("Time-Outputs.txt", std::ios::app);
 
 		fileOut << "\t### Brute Force ###\n"
-			 << "Average Time: " << avgTime << std::endl
+			 << "Average Time: " << avgTime << " milliseconds" << std::endl
+			 << "\t\t\t"
 			 << "Standard Dev: " << stdDev << std::endl;
 
 		fileOut.close();
@@ -171,7 +173,7 @@ int main(int argc, char *argv[])
 		// Array to hold the 10 different times
 		clock_t avgArr[10];
 
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < 1; i++)
 		{
 			clock_t time = clock();
 			Sort::InsertionSort(array, numElm);
@@ -183,6 +185,15 @@ int main(int argc, char *argv[])
 
 		// Get the standard deviation of those times
 		double stdDev = getStdDev(avgArr, avgTime);
+
+		std::ofstream fileOut("Time-Outputs.txt", std::ios::app);
+
+		fileOut << "\t### Insertion Sort ###\n"
+			<< "Average Time: " << avgArr[0] << " milliseconds" << std::endl
+			<< "\t\t\t " << avgArr[0] / CLOCKS_PER_SEC << " seconds" << std::endl
+			<< "Standard Dev: " << stdDev << std::endl;
+
+		fileOut.close();
 	}
 
 	/////////////////////////
@@ -208,6 +219,14 @@ int main(int argc, char *argv[])
 
 		// Get the standard deviation of those times
 		double stdDev = getStdDev(avgArr, avgTime);		
+
+		std::ofstream fileOut("Time-Outputs.txt", std::ios::app);
+
+		fileOut << "\t### Bubble Sort ###\n"
+			<< "Average Time: " << avgTime << std::endl
+			<< "Standard Dev: " << stdDev << std::endl;
+
+		fileOut.close();
 	}
 
 	////////////////////////////
@@ -232,7 +251,15 @@ int main(int argc, char *argv[])
 		double avgTime = getAverage(avgArr);
 
 		// Get the standard deviation of those times
-		double stdDev = getStdDev(avgArr, avgTime);		
+		double stdDev = getStdDev(avgArr, avgTime);	
+
+		std::ofstream fileOut("Time-Outputs.txt", std::ios::app);
+
+		fileOut << "\t### Selection Sort ###\n"
+			<< "Average Time: " << avgTime << std::endl
+			<< "Standard Dev: " << stdDev << std::endl;
+
+		fileOut.close();
 	}
 
 	////////////////////////////////////

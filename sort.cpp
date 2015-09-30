@@ -54,11 +54,11 @@ void Sort::BruteForce(int * array, int k, int size)
 				SORTED = false;
 		}
 				
-		if (SORTED)
+		/*if (SORTED)
 		{
 			Sort::Print(array, size);
 			return;
-		}
+		}*/
 			
 	}		
 }
@@ -81,7 +81,7 @@ void Sort::InsertionSort(int * array, int size)
 		}
 	}
 
-	Sort::Print(array, size);
+	//Sort::Print(array, size);
 }
 
 
@@ -108,7 +108,7 @@ void Sort::BubbleSort(int * array, int size)
 		}
 	}
 
-	Sort::Print(array, size);
+	//Sort::Print(array, size);
 
 }
 
@@ -131,7 +131,7 @@ void Sort::SelectionSort(int * array, int size)
 		Sort::Swap(array, i, min);
 	}
 
-	Sort::Print(array, size);
+	//Sort::Print(array, size);
 }
 
 /*

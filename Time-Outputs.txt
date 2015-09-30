@@ -1,0 +1,24 @@
+	### Insertion Sort ###
+Average Time: 36122 milliseconds
+			 36 seconds
+Standard Dev: 6.4347e+008
+	### Insertion Sort ###
+Average Time: 333361 milliseconds
+			 333 seconds
+Standard Dev: 2.56117e+006
+	### Insertion Sort ###
+Average Time: 36100 milliseconds
+			 36 seconds
+Standard Dev: 6.43092e+008
+	### Insertion Sort ###
+Average Time: 144409 milliseconds
+			 144 seconds
+Standard Dev: 6.43352e+008
+	### Insertion Sort ###
+Average Time: 577984 milliseconds
+			 577 seconds
+Standard Dev: 6.42946e+008
+	### Insertion Sort ###
+Average Time: 332673 milliseconds
+			 332 seconds
+Standard Dev: 6.43389e+008
