@@ -48,7 +48,7 @@ unsigned int CountLines(const std::vector <char> & buff, int sz);
 /* Calculates the average of an array */
 double getAverage(clock_t *avgArr);
 
-/* Calculates the standard deviation of the 10 times calculated for each algo */
+/* Calculates the standard deviation of the 30 times calculated for each algo */
 double getStdDev(clock_t * avgArr, double avg);
 
 /*
@@ -86,24 +86,24 @@ int main(int argc, char *argv[])
 	int *array = new int[numElm];
 	std::ifstream file(argv[1]);
 
-	////////////		 Check number of elements in the file		///////////////////////////////////////////////////////////
-	
-	const int SZ = 1024 * 1024;		// 1MB buffer size
-	std::vector <char> buff(SZ);	// Buffer for bytes read from file
-	std::ifstream ifs(argv[1]);	// File to open
-	int size = 1;
+	//////////////		 Check number of elements in the file		///////////////////////////////////////////////////////////
+	//
+	//const int SZ = 1024 * 1024;		// 1MB buffer size
+	//std::vector <char> buff(SZ);	// Buffer for bytes read from file
+	//std::ifstream ifs(argv[1]);	// File to open
+	//int size = 1;
 
-	// Get number of lines in the file
-	while (int cc = FileRead(ifs, buff)) {
-		size += CountLines(buff, cc);
-	}
+	//// Get number of lines in the file
+	//while (int cc = FileRead(ifs, buff)) {
+	//	size += CountLines(buff, cc);
+	//}
 
-	// Make sure the requested amount of elements to process does not exceed what is in the file
-	if (numElm > size)
-	{
-		std::cout << "\n\nYou are trying to process more elements than are in the file.\nTerminating program.....\n\n";
-		return 0;
-	}
+	//// Make sure the requested amount of elements to process does not exceed what is in the file
+	//if (numElm > size)
+	//{
+	//	std::cout << "\n\nYou are trying to process more elements than are in the file.\nTerminating program.....\n\n";
+	//	return 0;
+	//}
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -134,19 +134,32 @@ int main(int argc, char *argv[])
 	{
 		std::cout << "Calling Brute Force with " << argv[2] << " elements\n\n";
 
-		/* Run the algo 10 times and time it to get an average time */
+		/* Run the algo 30 times and time it to get an average time */
 
-		// Array to hold the 10 different times
-		clock_t avgArr[10];
+		// Array to hold the 30 different times
+		clock_t avgArr[30];
 
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < 30; i++)
 		{
 			clock_t time = clock();
 			Sort::BruteForce(array, 0, numElm);
 			avgArr[i] = clock() - time;
+
+			// Must repopulate array from file, or else the already sorted array will
+			// be passed back into the function and it will drastically mess up the time.
+			std::string line;
+			int num;
+			for (int i = 0; i < numElm; i++)
+			{
+				getline(file, line);
+
+				std::stringstream ss(line);
+				ss >> num;
+				array[i] = num;
+			}
 		}
 
-		// Get the average of the 10 times
+		// Get the average of the 30 times
 		double avgTime = getAverage(avgArr);
 
 		// Get the standard deviation of those times
@@ -154,9 +167,10 @@ int main(int argc, char *argv[])
 
 		std::ofstream fileOut("Time-Outputs.txt", std::ios::app);
 
-		fileOut << "\t### Brute Force ###\n"
-			 << "Average Time: " << avgTime << " milliseconds" << std::endl
-			 << "\t\t\t"
+		fileOut << "\n\t### Brute Force ###\n"
+			 << "Array Size: " << numElm << std::endl
+			 << "Average Time: " << avgTime << " cpu ticks" << std::endl
+			 << "\t\t\t " << avgTime / CLOCKS_PER_SEC << " seconds" << std::endl
 			 << "Standard Dev: " << stdDev << std::endl;
 
 		fileOut.close();
@@ -168,19 +182,32 @@ int main(int argc, char *argv[])
 	{
 		std::cout << "Calling Insertion Sort with " << argv[2] << " elements\n\n";
 
-		/* Run the algo 10 times and time it to get an average time */
+		/* Run the algo 30 times and time it to get an average time */
 
-		// Array to hold the 10 different times
-		clock_t avgArr[10];
+		// Array to hold the 30 different times
+		clock_t avgArr[30];
 
-		for (int i = 0; i < 1; i++)
+		for (int i = 0; i < 30; i++)
 		{
 			clock_t time = clock();
 			Sort::InsertionSort(array, numElm);
 			avgArr[i] = clock() - time;
-		}		
 
-		// Get the average of the 10 times
+			// Must repopulate array from file, or else the already sorted array will
+			// be passed back into the function and it will drastically mess up the time.
+			std::string line;
+			int num;
+			for (int i = 0; i < numElm; i++)
+			{
+				getline(file, line);
+
+				std::stringstream ss(line);
+				ss >> num;
+				array[i] = num;
+			}
+		}	
+
+		// Get the average of the 30 times
 		double avgTime = getAverage(avgArr);
 
 		// Get the standard deviation of those times
@@ -188,10 +215,11 @@ int main(int argc, char *argv[])
 
 		std::ofstream fileOut("Time-Outputs.txt", std::ios::app);
 
-		fileOut << "\t### Insertion Sort ###\n"
-			<< "Average Time: " << avgArr[0] << " milliseconds" << std::endl
-			<< "\t\t\t " << avgArr[0] / CLOCKS_PER_SEC << " seconds" << std::endl
-			<< "Standard Dev: " << stdDev << std::endl;
+		fileOut << "\n\t### Insertion Sort ###\n"
+			 << "Array Size: " << numElm << std::endl
+			 << "Average Time: " << avgTime << " cpu ticks" << std::endl
+			 << "\t\t\t " << avgTime / CLOCKS_PER_SEC << " seconds" << std::endl
+			 << "Standard Dev: " << stdDev << std::endl;
 
 		fileOut.close();
 	}
@@ -202,19 +230,32 @@ int main(int argc, char *argv[])
 	{
 		std::cout << "Calling Bubble Sort with " << argv[2] << " elements\n\n";
 
-		/* Run the algo 10 times and time it to get an average time */
+		/* Run the algo 30 times and time it to get an average time */
 
-		// Array to hold the 10 different times
-		clock_t avgArr[10];
+		// Array to hold the 30 different times
+		clock_t avgArr[30];
 
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < 30; i++)
 		{
 			clock_t time;
 			Sort::BubbleSort(array, numElm);
 			avgArr[i] = clock() - time;
+
+			// Must repopulate array from file, or else the already sorted array will
+			// be passed back into the function and it will drastically mess up the time.
+			std::string line;
+			int num;
+			for (int i = 0; i < numElm; i++)
+			{
+				getline(file, line);
+
+				std::stringstream ss(line);
+				ss >> num;
+				array[i] = num;
+			}
 		}
 
-		// Get the average of the 10 times
+		// Get the average of the 30 times
 		double avgTime = getAverage(avgArr);
 
 		// Get the standard deviation of those times
@@ -222,9 +263,11 @@ int main(int argc, char *argv[])
 
 		std::ofstream fileOut("Time-Outputs.txt", std::ios::app);
 
-		fileOut << "\t### Bubble Sort ###\n"
-			<< "Average Time: " << avgTime << std::endl
-			<< "Standard Dev: " << stdDev << std::endl;
+		fileOut << "\n\t### Bubble Sort ###\n"
+			<< "Array Size: " << numElm << std::endl
+			 << "Average Time: " << avgTime << " cpu ticks" << std::endl
+			 << "\t\t\t " << avgTime / CLOCKS_PER_SEC << " seconds" << std::endl
+			 << "Standard Dev: " << stdDev << std::endl;
 
 		fileOut.close();
 	}
@@ -235,19 +278,32 @@ int main(int argc, char *argv[])
 	{
 		std::cout << "Calling Selection Sort with " << argv[2] << " elements\n\n";
 
-		/* Run the algo 10 times and time it to get an average time */
+		/* Run the algo 30 times and time it to get an average time */
 
-		// Array to hold the 10 different times
-		clock_t avgArr[10];
+		// Array to hold the 30 different times
+		clock_t avgArr[30];
 
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < 30; i++)
 		{
 			clock_t time;
 			Sort::SelectionSort(array, numElm);
 			avgArr[i] = clock() - time;
+
+			// Must repopulate array from file, or else the already sorted array will
+			// be passed back into the function and it will drastically mess up the time.
+			std::string line;
+			int num;
+			for (int i = 0; i < numElm; i++)
+			{
+				getline(file, line);
+
+				std::stringstream ss(line);
+				ss >> num;
+				array[i] = num;
+			}
 		}
 
-		// Get the average of the 10 times
+		// Get the average of the 30 times
 		double avgTime = getAverage(avgArr);
 
 		// Get the standard deviation of those times
@@ -255,9 +311,11 @@ int main(int argc, char *argv[])
 
 		std::ofstream fileOut("Time-Outputs.txt", std::ios::app);
 
-		fileOut << "\t### Selection Sort ###\n"
-			<< "Average Time: " << avgTime << std::endl
-			<< "Standard Dev: " << stdDev << std::endl;
+		fileOut << "\n\t### Selection Sort ###\n"
+			<< "Array Size: " << numElm << std::endl
+			 << "Average Time: " << avgTime << " cpu ticks" << std::endl
+			 << "\t\t\t " << avgTime / CLOCKS_PER_SEC << " seconds" << std::endl
+			 << "Standard Dev: " << stdDev << std::endl;
 
 		fileOut.close();
 	}
@@ -304,18 +362,18 @@ double getAverage(clock_t *avgArr)
 {
 	double avg = 0;
 
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 30; i++)
 		avg += avgArr[i];
 
-	return avg / 10.0;
+	return avg / 30.0;
 }
 
 double getStdDev(clock_t *avgArr, double avg)
 {
 	double stdDev = 0;
 
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 30; i++)
 		stdDev += pow((avgArr[i] - avg), 2);
 
-	return sqrt((stdDev / 10));
+	return sqrt((stdDev / 30.0));
 }

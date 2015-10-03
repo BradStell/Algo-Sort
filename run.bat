@@ -18,13 +18,7 @@ main.exe nums.txt 131072 -i
 main.exe nums.txt 262144 -i
 main.exe nums.txt 524288 -i
 main.exe nums.txt 1048576 -i
-main.exe nums.txt 2097152 -i
-main.exe nums.txt 4194304 -i
-main.exe nums.txt 8388608 -i
-main.exe nums.txt 16777216 -i
-main.exe nums.txt 33554432 -i
-main.exe nums.txt 67108864 -i
-main.exe nums.txt 134217728 -i
+main.exe nums.txt 1500000 -i
 
 main.exe nums.txt 2 -s
 main.exe nums.txt 4 -s
@@ -46,13 +40,7 @@ main.exe nums.txt 131072 -s
 main.exe nums.txt 262144 -s
 main.exe nums.txt 524288 -s
 main.exe nums.txt 1048576 -s
-main.exe nums.txt 2097152 -s
-main.exe nums.txt 4194304 -s
-main.exe nums.txt 8388608 -s
-main.exe nums.txt 16777216 -s
-main.exe nums.txt 33554432 -s
-main.exe nums.txt 67108864 -s
-main.exe nums.txt 134217728 -s
+main.exe nums.txt 1500000 -s
 
 main.exe nums.txt 2 -b
 main.exe nums.txt 4 -b
@@ -74,13 +62,7 @@ main.exe nums.txt 131072 -b
 main.exe nums.txt 262144 -b
 main.exe nums.txt 524288 -b
 main.exe nums.txt 1048576 -b
-main.exe nums.txt 2097152 -b
-main.exe nums.txt 4194304 -b
-main.exe nums.txt 8388608 -b
-main.exe nums.txt 16777216 -b
-main.exe nums.txt 33554432 -b
-main.exe nums.txt 67108864 -b
-main.exe nums.txt 134217728 -b
+main.exe nums.txt 1500000 -b
 
 main.exe nums.txt 2 -bf
 main.exe nums.txt 4 -bf
