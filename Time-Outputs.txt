@@ -38,7 +38,7 @@ Standard Dev: 0
 	### Insertion Sort ###
 Array Size: 128
 Average Time: 0.0333333 cpu ticks
-			 3.33333e-005 seconds
+			 .0000333333 seconds
 Standard Dev: 0.179505
 
 	### Insertion Sort ###
@@ -118,3 +118,296 @@ Array Size: 1048576
 Average Time: 159259 cpu ticks
 			 159.259 seconds
 Standard Dev: 1221.45
+
+	### Insertion Sort ###
+Array Size: 2097152
+Average Time: 651087 cpu ticks
+			 651.087 seconds
+Standard Dev: 16927
+
+	### Selection Sort ###
+Array Size: 2
+Average Time: 6 cpu ticks
+			 0.006 seconds
+Standard Dev: 0
+
+	### Selection Sort ###
+Array Size: 4
+Average Time: 4.1 cpu ticks
+			 0.0041 seconds
+Standard Dev: 0.3
+
+	### Selection Sort ###
+Array Size: 8
+Average Time: 5 cpu ticks
+			 0.005 seconds
+Standard Dev: 0
+
+	### Selection Sort ###
+Array Size: 16
+Average Time: 4.73333 cpu ticks
+			 0.00473333 seconds
+Standard Dev: 0.679869
+
+	### Selection Sort ###
+Array Size: 32
+Average Time: 6.2 cpu ticks
+			 0.0062 seconds
+Standard Dev: 0.6
+
+	### Selection Sort ###
+Array Size: 64
+Average Time: 13.2333 cpu ticks
+			 0.0132333 seconds
+Standard Dev: 2.04423
+
+	### Selection Sort ###
+Array Size: 128
+Average Time: 9.43333 cpu ticks
+			 0.00943333 seconds
+Standard Dev: 2.26102
+
+	### Selection Sort ###
+Array Size: 256
+Average Time: 23.2333 cpu ticks
+			 0.0232333 seconds
+Standard Dev: 7.06486
+
+	### Selection Sort ###
+Array Size: 512
+Average Time: 20.4667 cpu ticks
+			 0.0204667 seconds
+Standard Dev: 8.71295
+
+	### Selection Sort ###
+Array Size: 1024
+Average Time: 39.5 cpu ticks
+			 0.0395 seconds
+Standard Dev: 19.6532
+
+	### Selection Sort ###
+Array Size: 2048
+Average Time: 94.8 cpu ticks
+			 0.0948 seconds
+Standard Dev: 50.0156
+
+	### Selection Sort ###
+Array Size: 4096
+Average Time: 259.733 cpu ticks
+			 0.259733 seconds
+Standard Dev: 142.373
+
+	### Selection Sort ###
+Array Size: 8192
+Average Time: 818.933 cpu ticks
+			 0.818933 seconds
+Standard Dev: 454.408
+
+	### Selection Sort ###
+Array Size: 16384
+Average Time: 2841.67 cpu ticks
+			 2.84167 seconds
+Standard Dev: 1584.21
+
+	### Selection Sort ###
+Array Size: 32768
+Average Time: 10511.8 cpu ticks
+			 10.5118 seconds
+Standard Dev: 5866.99
+
+	### Selection Sort ###
+Array Size: 65536
+Average Time: 40279 cpu ticks
+			 40.279 seconds
+Standard Dev: 22487.7
+
+	### Selection Sort ###
+Array Size: 131072
+Average Time: 157685 cpu ticks
+			 157.685 seconds
+Standard Dev: 88050.2
+
+	### Selection Sort ###
+Array Size: 262144
+Average Time: 624093 cpu ticks
+			 624.093 seconds
+Standard Dev: 348503
+
+	### Selection Sort ###
+Array Size: 524288
+Average Time: 2483940 cpu ticks
+			 2483.94 seconds
+Standard Dev: 1387090
+
+	### Bubble Sort ###
+Array Size: 2
+Average Time: 4 cpu ticks
+			 0.004 seconds
+Standard Dev: 0
+
+	### Bubble Sort ###
+Array Size: 4
+Average Time: 4 cpu ticks
+			 0.004 seconds
+Standard Dev: 0
+
+	### Bubble Sort ###
+Array Size: 8
+Average Time: 5 cpu ticks
+			 0.005 seconds
+Standard Dev: 0
+
+	### Bubble Sort ###
+Array Size: 16
+Average Time: 4.2 cpu ticks
+			 0.0042 seconds
+Standard Dev: 0.4
+
+	### Bubble Sort ###
+Array Size: 32
+Average Time: 5.63333 cpu ticks
+			 0.00563333 seconds
+Standard Dev: 0.481894
+
+	### Bubble Sort ###
+Array Size: 64
+Average Time: 7.03333 cpu ticks
+			 0.00703333 seconds
+Standard Dev: 1.11006
+
+	### Bubble Sort ###
+Array Size: 128
+Average Time: 8.46667 cpu ticks
+			 0.00846667 seconds
+Standard Dev: 2.30555
+
+	### Bubble Sort ###
+Array Size: 256
+Average Time: 17 cpu ticks
+			 0.017 seconds
+Standard Dev: 7.89515
+
+	### Bubble Sort ###
+Array Size: 512
+Average Time: 23.2333 cpu ticks
+			 0.0232333 seconds
+Standard Dev: 9.68051
+
+	### Bubble Sort ###
+Array Size: 1024
+Average Time: 43 cpu ticks
+			 0.043 seconds
+Standard Dev: 21.3026
+
+	### Bubble Sort ###
+Array Size: 2048
+Average Time: 105.5 cpu ticks
+			 0.1055 seconds
+Standard Dev: 56.2754
+
+	### Bubble Sort ###
+Array Size: 4096
+Average Time: 335.3 cpu ticks
+			 0.3353 seconds
+Standard Dev: 184.566
+
+	### Bubble Sort ###
+Array Size: 8192
+Average Time: 1366.5 cpu ticks
+			 1.3665 seconds
+Standard Dev: 760.595
+
+	### Bubble Sort ###
+Array Size: 16384
+Average Time: 5764.77 cpu ticks
+			 5.76477 seconds
+Standard Dev: 3217.92
+
+	### Bubble Sort ###
+Array Size: 32768
+Average Time: 23709.6 cpu ticks
+			 23.7096 seconds
+Standard Dev: 13245.4
+
+	### Bubble Sort ###
+Array Size: 65536
+Average Time: 95976.1 cpu ticks
+			 95.9761 seconds
+Standard Dev: 53599.9
+
+	### Bubble Sort ###
+Array Size: 131072
+Average Time: 388857 cpu ticks
+			 388.857 seconds
+Standard Dev: 216982
+
+	### Bubble Sort ###
+Array Size: 262144
+Average Time: 1532850 cpu ticks
+			 1532.85 seconds
+Standard Dev: 855742
+
+	### Bubble Sort ###
+Array Size: 524288
+Average Time: 6116400 cpu ticks
+			 6116.4 seconds
+Standard Dev: 3415590
+
+	### Brute Force ###
+Array Size: 2
+Average Time: 0 cpu ticks
+			 0 seconds
+Standard Dev: 0
+
+	### Brute Force ###
+Array Size: 4
+Average Time: 0 cpu ticks
+			 0 seconds
+Standard Dev: 0
+
+	### Brute Force ###
+Array Size: 8
+Average Time: 0 cpu ticks
+			 0 seconds
+Standard Dev: 0
+
+	### Brute Force ###
+Array Size: 9
+Average Time: 0.133333 cpu ticks
+			 0.000133333 seconds
+Standard Dev: 0.718022
+
+	### Brute Force ###
+Array Size: 10
+Average Time: 1.43333 cpu ticks
+			 0.00143333 seconds
+Standard Dev: 7.71874
+
+	### Brute Force ###
+Array Size: 11
+Average Time: 11.0333 cpu ticks
+			 0.0110333 seconds
+Standard Dev: 59.4163
+
+	### Brute Force ###
+Array Size: 12
+Average Time: 93.5333 cpu ticks
+			 0.0935333 seconds
+Standard Dev: 503.692
+
+	### Brute Force ###
+Array Size: 13
+Average Time: 1015.03 cpu ticks
+			 1.01503 seconds
+Standard Dev: 5466.12
+
+	### Brute Force ###
+Array Size: 14
+Average Time: 12814.7 cpu ticks
+			 12.8147 seconds
+Standard Dev: 69009.5
+	### Brute Force ###
+Array Size: 15
+Average Time: 179498 cpu ticks
+			 179.498 seconds
+Standard Dev: 966626

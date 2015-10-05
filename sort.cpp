@@ -52,14 +52,7 @@ void Sort::BruteForce(int * array, int k, int size)
 		{
 			if (array[i] > array[i + 1])
 				SORTED = false;
-		}
-				
-		/*if (SORTED)
-		{
-			Sort::Print(array, size);
-			return;
-		}*/
-			
+		}			
 	}		
 }
 
@@ -107,9 +100,7 @@ void Sort::BubbleSort(int * array, int size)
 			}				
 		}
 	}
-
 	//Sort::Print(array, size);
-
 }
 
 

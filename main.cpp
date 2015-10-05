@@ -39,12 +39,6 @@
 //////////////////////////////
 /// Function Declarations ///
 
-/* Read bytes from in-stream and place them in a buffer */
-unsigned int FileRead(std::istream & is, std::vector <char> & buff);
-
-/* Reades bytes from buffer and returns number of '\n' characters found */
-unsigned int CountLines(const std::vector <char> & buff, int sz);
-
 /* Calculates the average of an array */
 double getAverage(clock_t *avgArr);
 
@@ -85,26 +79,6 @@ int main(int argc, char *argv[])
 	int numElm = atoi(argv[2]);
 	int *array = new int[numElm];
 	std::ifstream file(argv[1]);
-
-	//////////////		 Check number of elements in the file		///////////////////////////////////////////////////////////
-	//
-	//const int SZ = 1024 * 1024;		// 1MB buffer size
-	//std::vector <char> buff(SZ);	// Buffer for bytes read from file
-	//std::ifstream ifs(argv[1]);	// File to open
-	//int size = 1;
-
-	//// Get number of lines in the file
-	//while (int cc = FileRead(ifs, buff)) {
-	//	size += CountLines(buff, cc);
-	//}
-
-	//// Make sure the requested amount of elements to process does not exceed what is in the file
-	//if (numElm > size)
-	//{
-	//	std::cout << "\n\nYou are trying to process more elements than are in the file.\nTerminating program.....\n\n";
-	//	return 0;
-	//}
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 	/* Report and abort failed file open */
@@ -329,33 +303,6 @@ int main(int argc, char *argv[])
 	}
 
 	return 0;
-}
-
-
-/*
-	This method accepts an instream and a vector buffer.
-	It will read bytes from the instream and put them in the buffer in 1MB chuncks.
-*/
-unsigned int FileRead(std::istream & is, std::vector <char> & buff) {
-	is.read(&buff[0], buff.size());
-	return is.gcount();
-}
-
-
-/*
-	This method receives the buffer and the byte count from the above method.
-	It will count the number of newline characters and return how many were found,
-	thus analogous to the number of elements in the file.
-*/
-unsigned int CountLines(const std::vector <char> & buff, int sz) {
-	int newlines = 0;
-	const char * p = &buff[0];
-	for (int i = 0; i < sz; i++) {
-		if (p[i] == '\n') {
-			newlines++;
-		}
-	}
-	return newlines;
 }
 
 double getAverage(clock_t *avgArr)

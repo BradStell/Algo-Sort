@@ -62,9 +62,9 @@ while elms < 4000000:
 
 ##########################
 ### Run Selection Sort ###
-elms = 2;
+elms = 1048576;
 
-while elms < 4000000:
+#while elms < 4000000:
 	
 	start_time = time.time()
 	call(["main.exe", "nums.txt", str(elms), "-s"])
